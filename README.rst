@@ -17,3 +17,11 @@ To install github-sync, simply run::
 
 The command ``github-sync`` will then be available to you from the command line.
 
+
+History
+--------
+
+This fork has roots from https://github.com/kennethreitz/ghsync/
+
+I wanted to get my fork is simpler, without the directory structure, etc.
+And just to recursively searched github-repository at the specified path and performed git-pull
