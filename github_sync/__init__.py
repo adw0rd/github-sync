@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 """github-sync: GitHub Repo Syncer
 
 This script uses the GitHub API to get a list of all your repos in your GitHub account.
@@ -16,7 +15,7 @@ And just to recursively searched github-repository at the specified path and per
 __author__ = 'Mikhail Andreev'
 __license__ = 'ISC'
 __copyright__ = '2012 Mikhail Andreev'
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 import os
 import sys
@@ -45,17 +44,19 @@ GITHUB_SYNC_DIR = os.environ.get('GITHUB_SYNC_DIR', '.')
 def run():
     github = Github(username=GITHUB_USER, api_token=GITHUB_TOKEN)
     os.chdir(GITHUB_SYNC_DIR)
-
     repos = []
     for path_to_repo in cmd('find {0} -name ".git"'.format(GITHUB_SYNC_DIR)).split("\n"):
+        # Receive repositories
         repos.append(path_to_repo[0:-4])
     for repo in repos:
         os.chdir(repo)
         try:
+            # Receive current branch name
             branch = [br.split()[1] for br in cmd('git branch').split('\n') if br.split()[0] == "*"][0]
         except:
             puts(colored.yellow('Unkown branch in repository "{0}"!'.format(repo)))
         for remote in cmd('git remote -v').split('\n'):
+            # Receive all remotes for repository
             remote = remote.split()
             if remote and remote[2] == "(fetch)" and 'github.com:' in remote[1]:
                 puts(colored.green('Updating repo:'))

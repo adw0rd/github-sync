@@ -18,6 +18,9 @@ To install github-sync, simply run::
     $ pip install -e git://github.com/adw0rd/github-sync.git#egg=github-sync
 
 The command ``github-sync`` will then be available to you from the command line.
+::
+
+    $ github-sync
 
 
 History
