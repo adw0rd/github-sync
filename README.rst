@@ -3,9 +3,9 @@ github-sync: GitHub Repo Syncer
 
 This script uses the GitHub API to get a list of all your repos in your GitHub account. If the repo already exists locally, it will update it via git-pull.
 
-Unlike https://github.com/kennethreitz/ghsync this package does not require a directory structure, just point the way to the place where you have to find your repos. The default is "~"::
+Unlike https://github.com/kennethreitz/ghsync this package does not require a directory structure, just point the way to the place where you have to find your repos. The default is "." (current directory), set the correct path::
 
-    export GITHUB_SYNC_DIR='~'
+    export GITHUB_SYNC_DIR='/path/to/repos'
 
 
 Install

@@ -49,16 +49,19 @@ def run():
     repos = []
     for path_to_repo in cmd('find {0} -name ".git"'.format(GITHUB_SYNC_DIR)).split("\n"):
         repos.append(path_to_repo[0:-4])
-
     for repo in repos:
         os.chdir(repo)
+        try:
+            branch = [br.split()[1] for br in cmd('git branch').split('\n') if br.split()[0] == "*"][0]
+        except:
+            puts(colored.yellow('Unkown branch in repository "{0}"!'.format(repo)))
         for remote in cmd('git remote -v').split('\n'):
             remote = remote.split()
             if remote and remote[2] == "(fetch)" and 'github.com:' in remote[1]:
-                puts(colored.red('Updating repo:'))
-                puts(colored.green('> {0}'.format(repo)))
-                puts(colored.green('> {0} ({1})'.format(remote[0], remote[1])))
-                os.system('git pull')
+                puts(colored.green('Updating repo:'))
+                puts(colored.cyan('> {0}'.format(repo)))
+                puts(colored.cyan('> {0} ({1})'.format(remote[0], remote[1])))
+                os.system('git pull {0} {1}'.format(remote[0], branch))
 
 if __name__ == '__main__':
     run()
