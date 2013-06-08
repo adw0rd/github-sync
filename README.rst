@@ -1,6 +1,9 @@
 github-sync: GitHub Repo Syncer
 ================================
 
+.. image:: https://pypip.in/d/github-sync/badge.png
+    :target: http://pypi.python.org/pypi/github-sync
+
 This script uses the GitHub API to get a list of all your repos in your GitHub account. If the repo already exists locally, it will update it via git-pull.
 
 Unlike https://github.com/kennethreitz/ghsync this package does not require a directory structure, just point the way to the place where you have to find your repos. The default is "." (current directory), set the correct path::
